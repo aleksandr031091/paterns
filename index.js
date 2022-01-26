@@ -340,7 +340,96 @@
 // mazda = new Signaling(mazda);
 
 // console.log(mazda.getPrice(), mazda.getDescription());
-
 // ===================== Decorator =====================
+
+// ===================== Facade =====================
+class Conveyor {
+  setBody() {
+    console.log("Body set!");
+  }
+  getEngine() {
+    console.log("Dismantle engine!");
+  }
+  setEngine() {
+    console.log("Engine set!");
+  }
+  setInterior() {
+    console.log("Interior added!");
+  }
+  getExterior() {
+    console.log("Exterior added!");
+  }
+  setWheels() {
+    console.log("Wheels!");
+  }
+  paint() {
+    console.log("Car painted!");
+  }
+}
+
+class ConveyorFacade {
+  constructor(car) {
+    this.Car = car;
+  }
+
+  assembleCar() {
+    this.Car.setBody();
+    this.Car.getEngine();
+    this.Car.setEngine();
+    this.Car.setInterior();
+    this.Car.getExterior();
+    this.Car.setWheels();
+    this.Car.paint();
+  }
+
+  changeEngine() {
+    this.Car.getEngine();
+    this.Car.setEngine();
+  }
+}
+
+const conveyor = new ConveyorFacade(new Conveyor());
+let car = conveyor.assembleCar();
+car = conveyor.changeEngine();
+// ===================== Facade =====================
+
+// ===================== Proxy =====================
+class CarAccsess {
+  open() {
+    console.log("Opening car door");
+  }
+  close() {
+    console.log("Closing car door");
+  }
+}
+
+class SecuritySystem {
+  constructor(door) {
+    this.door = door;
+  }
+
+  open(password) {
+    if (this.aunthenticate(password)) {
+      this.door.open();
+    } else {
+      console.log("Access denied");
+    }
+  }
+
+  aunthenticate(password) {
+    return password === "Sasha";
+  }
+
+  close() {
+    this.door.close();
+  }
+}
+
+const door = new SecuritySystem(new CarAccsess());
+
+door.open("Sasha");
+door.open("Vitya");
+door.close();
+// ===================== Proxy =====================
 
 // ************************ design patern ************************
