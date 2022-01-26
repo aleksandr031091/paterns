@@ -343,93 +343,138 @@
 // ===================== Decorator =====================
 
 // ===================== Facade =====================
-class Conveyor {
-  setBody() {
-    console.log("Body set!");
-  }
-  getEngine() {
-    console.log("Dismantle engine!");
-  }
-  setEngine() {
-    console.log("Engine set!");
-  }
-  setInterior() {
-    console.log("Interior added!");
-  }
-  getExterior() {
-    console.log("Exterior added!");
-  }
-  setWheels() {
-    console.log("Wheels!");
-  }
-  paint() {
-    console.log("Car painted!");
-  }
-}
+// class Conveyor {
+//   setBody() {
+//     console.log("Body set!");
+//   }
+//   getEngine() {
+//     console.log("Dismantle engine!");
+//   }
+//   setEngine() {
+//     console.log("Engine set!");
+//   }
+//   setInterior() {
+//     console.log("Interior added!");
+//   }
+//   getExterior() {
+//     console.log("Exterior added!");
+//   }
+//   setWheels() {
+//     console.log("Wheels!");
+//   }
+//   paint() {
+//     console.log("Car painted!");
+//   }
+// }
 
-class ConveyorFacade {
-  constructor(car) {
-    this.Car = car;
-  }
+// class ConveyorFacade {
+//   constructor(car) {
+//     this.Car = car;
+//   }
 
-  assembleCar() {
-    this.Car.setBody();
-    this.Car.getEngine();
-    this.Car.setEngine();
-    this.Car.setInterior();
-    this.Car.getExterior();
-    this.Car.setWheels();
-    this.Car.paint();
-  }
+//   assembleCar() {
+//     this.Car.setBody();
+//     this.Car.getEngine();
+//     this.Car.setEngine();
+//     this.Car.setInterior();
+//     this.Car.getExterior();
+//     this.Car.setWheels();
+//     this.Car.paint();
+//   }
 
-  changeEngine() {
-    this.Car.getEngine();
-    this.Car.setEngine();
-  }
-}
+//   changeEngine() {
+//     this.Car.getEngine();
+//     this.Car.setEngine();
+//   }
+// }
 
-const conveyor = new ConveyorFacade(new Conveyor());
-let car = conveyor.assembleCar();
-car = conveyor.changeEngine();
-// ===================== Facade =====================
+// const conveyor = new ConveyorFacade(new Conveyor());
+// let car = conveyor.assembleCar();
+// car = conveyor.changeEngine();
+// // ===================== Facade =====================
 
+// // ===================== Proxy =====================
+// class CarAccsess {
+//   open() {
+//     console.log("Opening car door");
+//   }
+//   close() {
+//     console.log("Closing car door");
+//   }
+// }
+
+// class SecuritySystem {
+//   constructor(door) {
+//     this.door = door;
+//   }
+
+//   open(password) {
+//     if (this.aunthenticate(password)) {
+//       this.door.open();
+//     } else {
+//       console.log("Access denied");
+//     }
+//   }
+
+//   aunthenticate(password) {
+//     return password === "Sasha";
+//   }
+
+//   close() {
+//     this.door.close();
+//   }
+// }
+
+// const door = new SecuritySystem(new CarAccsess());
+
+// door.open("Vitya");
+// door.open("Sasha");
+// door.close();
 // ===================== Proxy =====================
-class CarAccsess {
-  open() {
-    console.log("Opening car door");
-  }
-  close() {
-    console.log("Closing car door");
-  }
-}
 
-class SecuritySystem {
-  constructor(door) {
-    this.door = door;
-  }
+// ===================== Adapter =====================
+// class EngineV4 {
+//   simpleInterface() {
+//     console.log("Engine V4! - tr-tr-tr");
+//   }
+// }
 
-  open(password) {
-    if (this.aunthenticate(password)) {
-      this.door.open();
-    } else {
-      console.log("Access denied");
-    }
-  }
+// class EngineV8 {
+//   complecatedInterface() {
+//     console.log("Engine V8! - wrom wrom!");
+//   }
+// }
 
-  aunthenticate(password) {
-    return password === "Sasha";
-  }
+// class EngineV8Adapter {
+//   constructor(engine) {
+//     this.engine = engine;
+//   }
 
-  close() {
-    this.door.close();
-  }
-}
+//   simpleInterface() {
+//     this.engine.complecatedInterface();
+//   }
+// }
 
-const door = new SecuritySystem(new CarAccsess());
+// class Auto {
+//   startEngine(engine) {
+//     engine.simpleInterface();
+//   }
+// }
 
-door.open("Sasha");
-door.open("Vitya");
-door.close();
-// ===================== Proxy =====================
+// const myOldCar = new Auto();
+// const oldEngine = new EngineV4();
+// myOldCar.startEngine(oldEngine);
+
+// const myNewCar = new Auto();
+// const engineAdapter = new EngineV8Adapter(new EngineV8());
+// myNewCar.startEngine(engineAdapter);
+
+/////////////// error
+// const myCar = new Auto();
+// const engineAdapter = new EngineV8();
+// myCar.startEngine(engineAdapter);
+/////////////// error
+
+// ===================== Adapter =====================
 
 // ************************ design patern ************************
